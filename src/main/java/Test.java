@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Locale;
 import com.github.javafaker.Faker;
 public class Test {
-    public static <Faker> void main(String[] args) {
+    public static void main(String[] args) {
         List<Human> humanList = new ArrayList<>();
         Faker faker = new Faker(new Locale("vi"));
 
