@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import com.github.javafaker.Faker;
 public class Test {
     public static void main(String[] args) {
@@ -115,6 +117,7 @@ public class Test {
         //In ra danh sách theo City – List<Human>
         humanList.stream()
                 .map(human -> human.getCity())
-                .distinct();
+                .distinct()
+                .collect(Collectors.toList());
     }
 }
