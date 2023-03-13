@@ -115,7 +115,6 @@ public class Test {
         //In ra danh sách theo City – List<Human>
         humanList.stream()
                 .map(human -> human.getCity())
-                .distinct()
-                .forEach();
+                .distinct();
     }
 }
