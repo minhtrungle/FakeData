@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
 import com.github.javafaker.Faker;
 public class Test {
     public static void main(String[] args) {
@@ -12,7 +11,7 @@ public class Test {
         Faker faker = new Faker(new Locale("vi"));
 
         for (int i = 0; i < 1000; i++) {
-            //Fake thong tin
+            //Fake thông tin
             Human human = new Human();
             human.setId(i);
             human.setFirstname(faker.name().firstName());
@@ -21,7 +20,7 @@ public class Test {
             human.setGender(faker.number().numberBetween(0, 2));
             human.setAge(faker.number().numberBetween(10,51));
             human.setSalary(faker.number().numberBetween(10,3001));
-            // Them vao humanList
+            //Thêm vào humanList
             humanList.add(human);
         }
 
@@ -58,7 +57,7 @@ public class Test {
 //                    }
 //                })
                 .map(human -> human.getCity())
-                .distinct()
+                .distinct()//duy nhất
                 .count();
         System.out.printf("Có tất cả %d thành phố \n", count2);
 
@@ -68,7 +67,13 @@ public class Test {
                 .forEach(human -> System.out.println(human));
 
         //Tính độ tuổi trung bình.
-
+        System.out.printf("Độ tuổi trung bình");
+        final double[] tongTuoi = {0};
+        humanList.stream()
+                .forEach(human -> {
+                    tongTuoi[0] = tongTuoi[0] + human.getAge();
+                });
+        System.out.println("Trung bình tuổi: " + tongTuoi[0] / humanList.size());
 
         //Tính mức lương trung bình của nam ở độ tuổi từ 20-40
         System.out.println("Mức lương trung bình của nam ở độ tuổi từ 20-40");
@@ -81,7 +86,7 @@ public class Test {
                     tongLuong[0] = tongLuong[0] + human.getSalary();
                     soNguoi[0] ++;
                 });
-        System.out.println("Trung bình lương" +tongLuong[0] / soNguoi[0]);
+        System.out.println("Trung bình lương" + tongLuong[0] / soNguoi[0]);
 
         //Sắp xếp danh sách theo độ tuổi.
         System.out.println("Sắp xếp danh sách theo độ tuổi.\n");
@@ -106,5 +111,11 @@ public class Test {
                     return 0;
                 })
                 .forEach(human -> System.out.println(human));
+
+        //In ra danh sách theo City – List<Human>
+        humanList.stream()
+                .map(human -> human.getCity())
+                .distinct()
+                .forEach();
     }
 }
